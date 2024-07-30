@@ -9,3 +9,4 @@ class Config:
     TEMPERATURE = float(os.getenv('TEMPERATURE', 0.5))
     REPO_URL = os.getenv('REPO_URL')
     GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
+    PR_URL = 'https://api.github.com/repos/mikelawson999/code-review-bot/pulls/1'

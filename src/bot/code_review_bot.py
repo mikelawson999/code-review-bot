@@ -13,7 +13,7 @@ class CodeReviewBot:
         self.repo = Repo.clone_from(Config.REPO_URL, '/tmp/repo')
         openai.api_key = Config.OPENAI_API_KEY
 
-    def run_security_scan(file_path):
+    def run_security_scan(self, file_path):
         b_conf = config.BanditConfig()
         b_mgr = manager.BanditManager(b_conf, "json")
         b_mgr.run_tests(file_path, [])
@@ -40,7 +40,7 @@ class CodeReviewBot:
         security_feedback = "\n".join([str(issue) for issue in security_issues])
         return f"{feedback}\n\nSecurity Issues:\n{security_feedback}"
 
-    def send_slack_notification(message, webhook_url):
+    def send_slack_notification(self, message, webhook_url):
         payload = {"text": message}
         response = requests.post(webhook_url, json=payload)
         return response.status_code
@@ -86,3 +86,8 @@ class CodeReviewBot:
                 print(f'Successfully posted comment: {comment}')
             else:
                 print(f'Failed to post comment: {response.content}')
+
+# Example usage
+if __name__ == '__main__':
+    bot = CodeReviewBot()
+    bot.review_pull_request(Config.PR_URL)
