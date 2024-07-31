@@ -28,7 +28,7 @@ class CodeReviewBot:
             engine="code-davinci-002",
             prompt=f"Review the following code and provide feedback:\n\n{code}."
                    f" The feedback should include any errors, and an estimate of complexity.,"
-                   f"Additionally, you should highligh any security issues",
+                   f"Additionally, you should highlight any security issues",
             max_tokens=Config.MAX_TOKENS,
             n=1,
             stop=None,
